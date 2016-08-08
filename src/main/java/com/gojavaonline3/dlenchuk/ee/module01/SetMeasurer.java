@@ -6,9 +6,9 @@ public class SetMeasurer extends Measurer {
 
     private final Set<Integer> testSet;
 
-    public SetMeasurer(Set<Integer> testSet, int entryCount) {
-        super(testSet, entryCount);
-        this.testSet = testSet;
+    public SetMeasurer(Collection<Integer> testCollection, int entryCount) {
+        super(testCollection, entryCount);
+        this.testSet = (Set<Integer>) testCollection;
     }
 
     @Override

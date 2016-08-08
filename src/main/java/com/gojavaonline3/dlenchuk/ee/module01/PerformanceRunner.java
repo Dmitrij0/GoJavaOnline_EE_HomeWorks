@@ -1,32 +1,33 @@
 package com.gojavaonline3.dlenchuk.ee.module01;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.TreeSet;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.*;
 
 public class PerformanceRunner {
 
-    public static void main(String[] args) {
-        Measurer entries = new ListMeasurer(new ArrayList<>(), 10_000);
-        entries.measure();
-        entries.iterator().forEachRemaining(System.out::println);
-        System.out.println();
+    private static PrintStream printStream;
 
-        entries = new ListMeasurer(new LinkedList<>(), 10_000);
-        entries.measure();
-        entries.iterator().forEachRemaining(System.out::println);
-        System.out.println();
+    public PerformanceRunner() throws FileNotFoundException {
+    }
 
-        entries = new SetMeasurer(new HashSet<>(), 10_000);
-        entries.measure();
-        entries.iterator().forEachRemaining(System.out::println);
-        System.out.println();
+    public static void main(String[] args) throws IOException {
+        printStream = new PrintStream("measurements.txt" );
+        report(10_000);
+        report(100_000);
+        report(1_000_000);
+    }
 
-        entries = new SetMeasurer(new TreeSet<>(), 10_000);
-        entries.measure();
-        entries.iterator().forEachRemaining(System.out::println);
+    private static void report(int entryCount) throws IOException {
+        MeasureManager measureManager =
+                new MeasureManager(Arrays.asList(new ArrayList<>(), new LinkedList<>(),
+                        new HashSet<>(), new LinkedHashSet<>(), new TreeSet<>()), 100, entryCount);
+        measureManager.executeMeasurements();
         System.out.println();
+        measureManager.report(System.out);
+        printStream.println();
+        measureManager.report(printStream);
     }
 
 }

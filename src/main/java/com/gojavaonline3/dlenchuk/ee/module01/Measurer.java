@@ -10,7 +10,14 @@ public abstract class Measurer implements Measurable, Iterable<Map.Entry<String,
 
     private boolean measured;
 
-    final Map<String, Long> measureData = new HashMap<>();
+    final Map<String, Long> measureData = new LinkedHashMap<>();
+
+
+    public static Measurer measurer(Collection<Integer> testCollection, int entryCount) {
+        return testCollection instanceof List ? new ListMeasurer(testCollection, entryCount) :
+                testCollection instanceof Set ? new SetMeasurer(testCollection, entryCount) : null;
+    }
+
 
     public Measurer(Collection<Integer> testCollection, int entryCount) {
         this.testCollection = testCollection;
@@ -41,10 +48,9 @@ public abstract class Measurer implements Measurable, Iterable<Map.Entry<String,
     }
 
     public String toString() {
-        return "The class of Set is the " + testCollection.getClass().getSimpleName() +
+        return "The class of Collection is the " + testCollection.getClass().getSimpleName() +
                 ", entryCount = " + entryCount +
-                ",\n measureData=" + measureData +
-                '}';
+                ",\nmeasureData=" + measureData;
     }
 
 }
