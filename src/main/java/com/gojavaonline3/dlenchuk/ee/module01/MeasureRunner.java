@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.*;
 
-public class PerformanceRunner {
+public class MeasureRunner {
 
     private static PrintStream printStream;
 
-    public PerformanceRunner() throws FileNotFoundException {
+    public MeasureRunner() throws FileNotFoundException {
     }
 
     public static void main(String[] args) throws IOException {
