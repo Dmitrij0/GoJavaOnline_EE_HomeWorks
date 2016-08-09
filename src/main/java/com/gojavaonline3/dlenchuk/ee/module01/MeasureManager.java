@@ -41,7 +41,6 @@ public class MeasureManager implements Iterable<Map.Entry<String, StatisticMeasu
     }
 
     public void report(PrintStream out) throws IOException {
-        long nanoTime = System.nanoTime();
         StringBuilder stringBuilder = new StringBuilder();
         collectionTypes
                 .forEach(item -> stringBuilder.append(item.getClass().getSimpleName()).append(", "));
@@ -75,7 +74,6 @@ public class MeasureManager implements Iterable<Map.Entry<String, StatisticMeasu
                 out.println("|");
             });
             out.println("=================================================================================================================================");
-            out.println("Time spent: " + (System.nanoTime() - nanoTime) + " ns");
         } else {
             out.println();
             out.println("The measurements were not executed.");
