@@ -21,7 +21,7 @@ public class MeasureRunner {
 
     private static void report(int entryCount) throws IOException {
         MeasureManager measureManager =
-                new MeasureManager(Arrays.asList(new ArrayList<>(), new LinkedList<>(),
+                new MeasureManager(Arrays.asList(new ArrayList<>(), new LinkedList<>(), new Vector<>(),
                         new HashSet<>(), new LinkedHashSet<>(), new TreeSet<>()), 100, entryCount);
         measureManager.executeMeasurements();
         System.out.println();
