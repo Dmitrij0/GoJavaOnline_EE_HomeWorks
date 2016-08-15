@@ -18,6 +18,15 @@ public abstract class Measurer implements Measurable, Iterable<Map.Entry<String,
                 testCollection instanceof Set ? new SetMeasurer(testCollection, entryCount) : null;
     }
 
+/*
+    public static Measurer measurer(List<Integer> testList, int entryCount) {
+        return new ListMeasurer(testList, entryCount);
+    }
+
+    public static Measurer measurer(Set<Integer> testSet, int entryCount) {
+        return new ListMeasurer(testSet, entryCount);
+    }
+*/
 
     public Measurer(Collection<Integer> testCollection, int entryCount) {
         this.testCollection = testCollection;
