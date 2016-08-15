@@ -18,6 +18,11 @@ public class IntegerTask implements Task<Integer> {
     }
 
     @Override
+    public Integer getValue() {
+        return value;
+    }
+
+    @Override
     public Integer getResult() {
         if (!executed) {
             throw new IllegalStateException("The task is not executed yet");

@@ -18,6 +18,11 @@ public class LongTask implements Task<Long> {
     }
 
     @Override
+    public Long getValue() {
+        return value;
+    }
+
+    @Override
     public Long getResult() {
         if (!executed) {
             throw new IllegalStateException("The task is not executed yet");
