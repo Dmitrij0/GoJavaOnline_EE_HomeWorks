@@ -12,6 +12,8 @@ public class ExecutorImpl<T extends Number> implements Executor<T>{
 
     private boolean executed;
 
+    private Validator<? super T> validator = new NumberValidator();
+
     public ExecutorImpl() {
     }
 
@@ -21,7 +23,7 @@ public class ExecutorImpl<T extends Number> implements Executor<T>{
 
     @Override
     public void addTask(Task<? extends T> task) {
-        addTask(task, new NumberValidator());
+        addTask(task, validator);
     }
 
     @Override
@@ -29,19 +31,18 @@ public class ExecutorImpl<T extends Number> implements Executor<T>{
         if (executed) {
             throw new IllegalStateException("The tasks is already executed");
         }
-        if (validator.isValid(task.getValue())) {
-            tasks.add(task);
+        task.execute();
+        final T result;
+        if (validator.isValid(result = task.getResult())) {
+            validResults.add(result);
         } else {
-            invalidResults.add(task.getValue());
+            invalidResults.add(result);
         }
     }
 
     @Override
     public void execute() {
-        tasks.forEach(task -> {
-            task.execute();
-            validResults.add(task.getResult());
-        });
+        tasks.forEach(this::addTask);
         executed = true;
     }
 

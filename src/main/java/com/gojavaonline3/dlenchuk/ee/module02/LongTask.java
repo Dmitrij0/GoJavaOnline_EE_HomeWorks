@@ -13,7 +13,7 @@ public class LongTask implements Task<Long> {
 
     @Override
     public void execute() {
-        result = value * 2;
+        result = (long)(value*Math.random()*(Math.random() < 0.5 ? -1 : 1));
         executed = true;
     }
 

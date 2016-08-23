@@ -13,7 +13,7 @@ public class IntegerTask implements Task<Integer> {
 
     @Override
     public void execute() {
-        result = value * 3;
+        result = (int)(value*Math.random()*(Math.random() < 0.5 ? -1 : 1));
         executed = true;
     }
 
