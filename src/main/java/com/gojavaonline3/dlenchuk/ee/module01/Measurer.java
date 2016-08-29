@@ -2,7 +2,7 @@ package com.gojavaonline3.dlenchuk.ee.module01;
 
 import java.util.*;
 
-public abstract class Measurer implements Measurable, Iterable<Map.Entry<String, Long>>{
+public abstract class Measurer implements Measurable, Iterable<Map.Entry<String, Long>> {
 
     private final Collection<Integer> testCollection;
 
@@ -15,18 +15,15 @@ public abstract class Measurer implements Measurable, Iterable<Map.Entry<String,
 
     public static Measurer measurer(Collection<Integer> testCollection, int entryCount) {
         return testCollection instanceof List ? new ListMeasurer(testCollection, entryCount) :
-                testCollection instanceof Set ? new SetMeasurer(testCollection, entryCount) : null;
+                testCollection instanceof Set ? new SetMeasurer(testCollection, entryCount) :
+                        new Measurer(testCollection, entryCount) {
+                            @Override
+                            public void measure() {
+                                throw new IllegalArgumentException(testCollection.getClass().getSimpleName() +
+                                        " is not supported");
+                            }
+                        };
     }
-
-/*
-    public static Measurer measurer(List<Integer> testList, int entryCount) {
-        return new ListMeasurer(testList, entryCount);
-    }
-
-    public static Measurer measurer(Set<Integer> testSet, int entryCount) {
-        return new ListMeasurer(testSet, entryCount);
-    }
-*/
 
     public Measurer(Collection<Integer> testCollection, int entryCount) {
         this.testCollection = testCollection;
