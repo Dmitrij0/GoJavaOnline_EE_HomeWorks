@@ -42,6 +42,9 @@ public class ExecutorImpl<T extends Number> implements Executor<T>{
 
     @Override
     public void execute() {
+        if (executed) {
+            throw new IllegalStateException("The tasks is already executed");
+        }
         tasks.forEach(this::addTask);
         executed = true;
     }
