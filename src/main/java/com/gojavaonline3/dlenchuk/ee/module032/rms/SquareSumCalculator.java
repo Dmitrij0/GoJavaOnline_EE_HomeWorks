@@ -19,11 +19,11 @@ public class SquareSumCalculator implements SquareSum {
         IntStream.range(0, numberOfThreads).forEach(i -> callableList.add(() -> {
             String threadName = Thread.currentThread().getName();
             long sum = 0L;
-            System.out.println(threadName + ": Evaluating...");
+//            System.out.println(threadName + ": Evaluating...");
             for (int j = i * itemCount; j < ((i != numberOfThreads) ? (i + 1) * itemCount : values.length); j++) {
                 sum += values[j] * values[j];
             }
-            System.out.println(threadName + ": Waiting for all on the phaser");
+//            System.out.println(threadName + ": Waiting for all on the phaser");
             phaser.arrive();
             return sum;
         }));
