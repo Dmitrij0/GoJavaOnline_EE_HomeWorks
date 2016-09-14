@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "com.gojavaonline3.dlenchuk.ee.module01.MeasureRunner"
+
+jar {
+    manifest.attributes("Main-Class": mainClassName)
+}
+
+test {
+    testLogging.showStandardStreams = true
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+
