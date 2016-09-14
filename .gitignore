@@ -2,6 +2,7 @@
 out/*
 .idea/*
 target/*
+build/*
 
 #Files
 *.class
