@@ -1,16 +1,21 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-repositories {
-    mavenCentral()
-}
-
-mainClassName = "com.gojavaonline3.dlenchuk.ee.module04.TestModule"
+mainClassName = "com.gojavaonline3.dlenchuk.ee.module02.GenericRunner"
 
 jar {
     manifest.attributes("Main-Class": mainClassName)
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     testCompile 'junit:junit:4.12'
 }
+
+test {
+    testLogging.showStandardStreams = true
+}
+

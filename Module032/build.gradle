@@ -1,0 +1,8 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "com.gojavaonline3.dlenchuk.ee.module032.RMSRunner"
+
+jar {
+    manifest.attributes("Main-Class": mainClassName)
+}
