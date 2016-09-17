@@ -5,4 +5,6 @@ include 'Module03'
 include 'Module03'
 include 'Module031'
 include 'Module032'
+include 'Module05'
+include 'Module08'
 
