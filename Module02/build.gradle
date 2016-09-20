@@ -1,3 +1,7 @@
+repositories {
+    mavenCentral()
+}
+
 apply plugin: 'java'
 apply plugin: 'application'
 
@@ -5,10 +9,6 @@ mainClassName = "com.gojavaonline3.dlenchuk.ee.module02.GenericRunner"
 
 jar {
     manifest.attributes("Main-Class": mainClassName)
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {

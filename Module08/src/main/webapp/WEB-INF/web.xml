@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <display-name>This is the FIRST SERVLET APPLICATION</display-name>
+    <description>
+        This is absolutely first servlet application.
+    </description>
+
+    <servlet>
+        <servlet-name>Clock</servlet-name>
+        <servlet-class>com.gojavaonline3.dlenchuk.ee.module08.ClockServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Clock</servlet-name>
+        <url-pattern>/clock</url-pattern>
+    </servlet-mapping>
+</web-app>
