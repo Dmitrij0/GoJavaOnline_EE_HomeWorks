@@ -1,9 +1,9 @@
 #Folders
-out/*
-.idea/*
-target/*
-build/*
-*/build/*
+out/
+.idea/
+target/
+build/
+*/build/
 
 #Files
 *.class
