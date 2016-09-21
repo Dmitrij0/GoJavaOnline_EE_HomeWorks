@@ -12,9 +12,17 @@
         <servlet-name>Clock</servlet-name>
         <servlet-class>com.gojavaonline3.dlenchuk.ee.module08.ClockServlet</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>com.gojavaonline3.dlenchuk.ee.module08.HelloServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Clock</servlet-name>
         <url-pattern>/clock</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 </web-app>
