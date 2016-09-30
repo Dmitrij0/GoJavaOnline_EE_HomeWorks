@@ -9,8 +9,7 @@
 <h2>HTTP header request example</h2>
 <table width="100%" border="1" align="center">
     <tr bgcolor="#949494">
-        <th>Header Name</th>
-        <th>Header Value(s)</th>
+        <th>Header Name</th><th>Header Value(s)</th>
     </tr>
     <c:forEach items="${header.keySet()}" var="headerName">
         <tr>

@@ -6,31 +6,26 @@ import static com.gojavaonline3.dlenchuk.ee.module08.todolist.ToDoItem.Priority.
 
 public class ToDoItem {
 
-    private Priority priority;
+    final private int id;
     private String name;
     private String description;
     private State state;
+    private Priority priority;
 
-    public ToDoItem(String name, String description) {
-        this.priority = MEDIUM;
-        this.name = name;
-        this.description = description;
-        this.state = State.INACTIVE;
+    public ToDoItem(int id, String name, String description) {
+        this(id, name, description, MEDIUM);
     }
 
-    public ToDoItem(Priority priority, String name, String description) {
+    public ToDoItem(int id, String name, String description, Priority priority) {
+        this.id = id;
         this.priority = priority;
         this.name = name;
         this.description = description;
         this.state = State.INACTIVE;
     }
 
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -55,6 +50,14 @@ public class ToDoItem {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public enum Priority {
