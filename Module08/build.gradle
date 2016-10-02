@@ -6,9 +6,12 @@ apply plugin: 'java'
 apply plugin: 'war'
 
 dependencies {
-    providedCompile "jstl:jstl:1.2"
+    compile "jstl:jstl:1.2"
+    compile "javax.servlet.jsp.jstl:jstl-api:1.2"
     compile "javax.servlet:servlet-api:2.5"
     compile "javax.servlet.jsp:jsp-api:2.1"
     compile 'org.apache.tomcat:tomcat-servlet-api:9.0.0.M10'
     testCompile "junit:junit:4.12"
 }
+
+war.webXml = file('src/main/webapp/WEB_INF/web.xml')

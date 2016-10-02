@@ -60,13 +60,18 @@ public class ToDoItem {
         this.priority = priority;
     }
 
+    public List<State> nextStates() {
+        return State.nextStates(state);
+    }
+
+
     public enum Priority {
         LOW,
         MEDIUM,
         HIGH
     }
 
-    private enum State {
+    public enum State {
         INACTIVE,
         READY,
         ASSIGNED,
@@ -80,6 +85,7 @@ public class ToDoItem {
         private static Map<State, List<State>> states = new HashMap<>();
 
         static {
+            states.put(null, Collections.singletonList(INACTIVE));
             states.put(INACTIVE, Arrays.asList(READY, COMPLETED));
             states.put(READY, Arrays.asList(TERMINATED, EXPIRED, ASSIGNED));
             states.put(ASSIGNED, Arrays.asList(READY, TERMINATED, EXPIRED, FORWARDED, FINISHED, FAILED));
@@ -90,9 +96,20 @@ public class ToDoItem {
             states.put(FAILED, Collections.singletonList(COMPLETED));
         }
 
-        public List<State> nextStates(State state) {
+        public static List<State> nextStates(State state) {
             return states.get(state);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ToDoItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", state=" + state +
+                ", priority=" + priority +
+                '}';
     }
 
 }
