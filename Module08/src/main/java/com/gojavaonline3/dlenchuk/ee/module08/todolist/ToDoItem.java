@@ -12,6 +12,10 @@ public class ToDoItem {
     private State state;
     private Priority priority;
 
+    public ToDoItem(int id) {
+        this(id, "", "");
+    }
+
     public ToDoItem(int id, String name, String description) {
         this(id, name, description, MEDIUM);
     }
@@ -99,6 +103,22 @@ public class ToDoItem {
         public static List<State> nextStates(State state) {
             return states.get(state);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ToDoItem toDoItem = (ToDoItem) o;
+
+        return id == toDoItem.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 
     @Override

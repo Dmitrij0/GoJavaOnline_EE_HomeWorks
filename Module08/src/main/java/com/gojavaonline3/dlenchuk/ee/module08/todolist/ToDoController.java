@@ -26,8 +26,8 @@ public class ToDoController extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        toDoList.add(new ToDoItem(toDoList.size() + 1, "First ToDo", "First ToDo Task"));
-        toDoList.add(new ToDoItem(toDoList.size() + 1, "Second ToDo", "Second ToDo Task"));
+        toDoList.add(new ToDoItem(toDoList.size(), "First ToDo", "First ToDo Task"));
+        toDoList.add(new ToDoItem(toDoList.size(), "Second ToDo", "Second ToDo Task"));
     }
 
     @Override
@@ -50,17 +50,22 @@ public class ToDoController extends HttpServlet {
 
         Map parameters = request.getParameterMap();
 
-        if (parameters.containsKey("Submit")) {
-            int itemIndex = Integer.valueOf(((String[]) parameters.get("Submit"))[0]) - 1;
+        if (parameters.containsKey("Add")) {
+            toDoList.add(new ToDoItem(toDoList.size()));
+        } else if (parameters.containsKey("Submit")) {
+            int currId = Integer.valueOf(((String[]) parameters.get("Submit"))[0]);
+            int itemIndex = toDoList.indexOf(new ToDoItem(currId));
+
             ToDoItem toDoItem = toDoList.get(itemIndex);
             toDoItem.setName(((String[]) parameters.get("Name"))[itemIndex]);
             toDoItem.setDescription(((String[]) parameters.get("Description"))[itemIndex]);
             toDoItem.setState(State.valueOf(((String[]) parameters.get("State"))[itemIndex]));
             toDoItem.setPriority(Priority.valueOf(((String[]) parameters.get("Priority"))[itemIndex]));
         } else if (parameters.containsKey("Delete")) {
-            toDoList.remove(Integer.valueOf(((String[]) parameters.get("Delete"))[0]) - 1);
-        } else if (parameters.containsKey("Add")) {
-            toDoList.add(new ToDoItem(toDoList.size() + 1, "", ""));
+            int currId = Integer.valueOf(((String[]) parameters.get("Delete"))[0]);
+            int itemIndex = toDoList.indexOf(new ToDoItem(currId));
+
+            toDoList.remove(itemIndex);
         }
 
         getServletContext().getRequestDispatcher(INDEX_JSP).forward(request, response);
