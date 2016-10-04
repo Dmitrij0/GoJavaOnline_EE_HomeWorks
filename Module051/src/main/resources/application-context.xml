@@ -4,10 +4,6 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="bootstrap" class="com.gojavaonline3.dlenchuk.ee.module051.BootStrap">
-        <constructor-arg ref="taskProvider"/>
-        <lookup-method  bean="taskProvider"/>
-    </bean>
-    <bean id="taskProvider" class="com.gojavaonline3.dlenchuk.ee.module051.tasks.IntegerTaskProvider" init-method="init"/>
+    <context:component-scan base-package="com.gojavaonline3.dlenchuk.ee.module051"/>
 
 </beans>
