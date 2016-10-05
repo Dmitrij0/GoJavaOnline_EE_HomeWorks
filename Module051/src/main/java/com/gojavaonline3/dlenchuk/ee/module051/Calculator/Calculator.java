@@ -7,11 +7,23 @@ import java.util.Scanner;
 
 public class Calculator {
 
-    public Validator validator;
-    public OperatorFactory operatorFactory;
-
+    private Validator validator;
+    private Parser parser;
+    private OperatorFactory operatorFactory;
 
     private Scanner scanner = new Scanner(System.in);
+
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
+
+    public void setOperatorFactory(OperatorFactory operatorFactory) {
+        this.operatorFactory = operatorFactory;
+    }
+
+    public void setParser(Parser parser) {
+        this.parser = parser;
+    }
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
@@ -37,13 +49,21 @@ public class Calculator {
                     return;
                 }
                 default: {
-                    if (valid(expression)) {
-                        System.out.println(expression);
-                    }
+                    calculate(expression);
                 }
             }
         } while (true);
 
+    }
+
+    private void calculate(String expression) {
+        if (valid(expression)) {
+            parser.parse(expression);
+        }
+    }
+
+    private boolean valid(String expression) {
+        return validator.valid(expression);
     }
 
     private void printHelp() {
@@ -51,10 +71,6 @@ public class Calculator {
         System.out.println("The commands are:");
         System.out.println("\t':h', ':help' - type to see this message;");
         System.out.println("\t':!', ':e', ':exit', ':quit' - type to exit.");
-    }
-
-    private boolean valid(String expression) {
-        return validator.valid(expression);
     }
 
 }

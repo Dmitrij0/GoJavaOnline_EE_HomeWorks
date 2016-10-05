@@ -8,9 +8,31 @@ import org.springframework.context.annotation.Scope;
 public class ApplicationConfig {
 
     @Bean
-    @Scope("prototype")
     public Calculator calculator() {
+        Calculator calculator = new Calculator();
+        calculator.setOperatorFactory(operatorFactory());
+        calculator.setValidator(validator());
+        calculator.setParser(parser());
         return new Calculator();
     }
+
+    @Bean
+    public OperatorFactory operatorFactory() {
+        return null;
+    }
+
+    @Bean
+    @Scope("prototype")
+    public Validator validator() {
+        return null;
+    }
+
+    @Bean
+    @Scope("prototype")
+    public Parser parser() {
+        return null;
+    }
+
+
 
 }
