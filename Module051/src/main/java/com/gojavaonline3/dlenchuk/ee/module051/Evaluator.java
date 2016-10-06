@@ -1,33 +1,30 @@
-package com.gojavaonline3.dlenchuk.ee.module051.Calculator;
+package com.gojavaonline3.dlenchuk.ee.module051;
 
+import com.gojavaonline3.dlenchuk.ee.module051.calculator1.Parser;
+import com.gojavaonline3.dlenchuk.ee.module051.calculator1.Validator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Scanner;
 
-public class Calculator {
+public class Evaluator {
 
     private Validator validator;
     private Parser parser;
-    private OperatorFactory operatorFactory;
 
     private Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+//        context.getBean("calculator", calculator1.class).execute();
+    }
 
     public void setValidator(Validator validator) {
         this.validator = validator;
     }
 
-    public void setOperatorFactory(OperatorFactory operatorFactory) {
-        this.operatorFactory = operatorFactory;
-    }
-
     public void setParser(Parser parser) {
         this.parser = parser;
-    }
-
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
-        context.getBean("calculator", Calculator.class).execute();
     }
 
     private void execute() {
@@ -58,7 +55,7 @@ public class Calculator {
 
     private void calculate(String expression) {
         if (valid(expression)) {
-            parser.parse(expression);
+            parser.parse();
         }
     }
 

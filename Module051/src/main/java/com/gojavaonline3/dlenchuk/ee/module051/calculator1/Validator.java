@@ -1,4 +1,4 @@
-package com.gojavaonline3.dlenchuk.ee.module051.Calculator;
+package com.gojavaonline3.dlenchuk.ee.module051.calculator1;
 
 public interface Validator {
 

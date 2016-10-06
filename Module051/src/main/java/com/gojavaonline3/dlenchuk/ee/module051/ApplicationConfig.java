@@ -1,19 +1,23 @@
-package com.gojavaonline3.dlenchuk.ee.module051.Calculator;
+package com.gojavaonline3.dlenchuk.ee.module051;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class ApplicationConfig {
 
+/*
     @Bean
-    public Calculator calculator() {
-        Calculator calculator = new Calculator();
+    public calculator1 calculator() {
+        return new calculator1();
+    }
+
+    @Bean
+    public calculator1 calculator() {
+        calculator1 calculator = new calculator1();
         calculator.setOperatorFactory(operatorFactory());
         calculator.setValidator(validator());
         calculator.setParser(parser());
-        return new Calculator();
+        return new calculator1();
     }
 
     @Bean
@@ -32,7 +36,6 @@ public class ApplicationConfig {
     public Parser parser() {
         return null;
     }
-
-
+*/
 
 }
