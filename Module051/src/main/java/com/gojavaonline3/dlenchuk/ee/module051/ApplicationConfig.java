@@ -21,11 +21,6 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public OperatorFactory operatorFactory() {
-        return null;
-    }
-
-    @Bean
     @Scope("prototype")
     public Validator validator() {
         return null;

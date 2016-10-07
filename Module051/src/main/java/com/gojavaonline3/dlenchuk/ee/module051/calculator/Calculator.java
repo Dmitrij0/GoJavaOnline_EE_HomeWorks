@@ -1,11 +1,8 @@
 package com.gojavaonline3.dlenchuk.ee.module051.calculator;
 
-public class Calculator {
+public class Calculator implements Сalculable {
 
-    private String expression;
-
-    public Calculator() {
-    }
+    private final String expression;
 
     public Calculator(String expression) {
         this.expression = expression;
@@ -15,22 +12,8 @@ public class Calculator {
         return expression;
     }
 
-    public void setExpression(String expression) {
-        this.expression = expression;
-    }
-
+    @Override
     public String calculate() {
-        String[] operands = expression.split("[-+]]");
-        char operator = expression.charAt(operands[0].length());
-        switch (operator) {
-            case '+':
-                sum(operands[0]., operands[1]);
-
-        }
-        return "";
+        return null;
     }
-
-    private void sum(String operand, String operand1) {
-    }
-
 }

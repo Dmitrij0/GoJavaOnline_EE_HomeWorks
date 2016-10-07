@@ -1,13 +1,11 @@
 package com.gojavaonline3.dlenchuk.ee.module051;
 
-import com.gojavaonline3.dlenchuk.ee.module051.calculator1.Parser;
+import com.gojavaonline3.dlenchuk.ee.module051.calculator.TempCalculator;
 
 public class TempRunner {
 
     public static void main(String[] args) {
-        final Parser parser = new Parser("52+32");
-        parser.parse();
-        System.out.println(parser);
+        System.out.println(new TempCalculator("10.3 - 1.4").calculate());
     }
 
 }

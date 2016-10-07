@@ -1,7 +1,8 @@
 package com.gojavaonline3.dlenchuk.ee.module051;
 
-import com.gojavaonline3.dlenchuk.ee.module051.calculator1.Parser;
-import com.gojavaonline3.dlenchuk.ee.module051.calculator1.Validator;
+import com.gojavaonline3.dlenchuk.ee.module051.calculator.Calculator;
+import com.gojavaonline3.dlenchuk.ee.module051.calculator.Parser;
+import com.gojavaonline3.dlenchuk.ee.module051.calculator.Validator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,7 +17,7 @@ public class Evaluator {
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
-//        context.getBean("calculator", calculator1.class).execute();
+        context.getBean("calculator", Calculator.class).calculate();
     }
 
     public void setValidator(Validator validator) {
