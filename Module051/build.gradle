@@ -15,8 +15,6 @@ repositories {
 
 dependencies {
     compile 'org.springframework:spring-context:4.3.2.RELEASE'
-    runtime 'org.springframework:spring-context:4.3.2.RELEASE'
-    compile project(':Module02')
-    runtime project(':Module02')
+    compile project(':Calculator')
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

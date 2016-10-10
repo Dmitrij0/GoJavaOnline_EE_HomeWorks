@@ -26,15 +26,14 @@ public class OperandParser {
     }
 
     public Number mainOperand() {
-        Number number1 = operands.get(0);
-        Number number2 = operands.get(1);
-        if (number1 instanceof Double || number2 instanceof Double) {
+        Number number = operands.get(0);
+        if (number instanceof Double) {
             return Double.valueOf("1");
-        } else if (number1 instanceof Float || number2 instanceof Float) {
+        } else if (number instanceof Float) {
             return Float.valueOf("1");
-        } else if (number1 instanceof Long || number2 instanceof Long) {
+        } else if (number instanceof Long) {
             return Long.valueOf("1");
-        } else if (number1 instanceof Integer || number2 instanceof Integer) {
+        } else if (number instanceof Integer) {
             return Integer.valueOf("1");
         } else {
             throw new IllegalArgumentException("Illegal expression: " + expression);

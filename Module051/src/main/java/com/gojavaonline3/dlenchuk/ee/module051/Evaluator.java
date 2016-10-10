@@ -1,67 +1,52 @@
 package com.gojavaonline3.dlenchuk.ee.module051;
 
 import com.gojavaonline3.dlenchuk.ee.module051.calculator.Calculator;
-import com.gojavaonline3.dlenchuk.ee.module051.calculator.OperatorParser;
-import com.gojavaonline3.dlenchuk.ee.module051.calculator.Validator;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 
 public class Evaluator {
 
-    private Validator validator;
-    private OperatorParser operatorParser;
-
     private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
-        context.getBean("calculator", Calculator.class).calculate();
+//        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+        ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        new Evaluator().execute(context);
     }
 
-    public void setValidator(Validator validator) {
-        this.validator = validator;
-    }
-
-    public void setOperatorParser(OperatorParser operatorParser) {
-        this.operatorParser = operatorParser;
-    }
-
-    private void execute() {
+    private void execute(ApplicationContext context) {
         String expression;
         printHelp();
         do {
-            System.out.print(">>");
-            expression = scanner.nextLine().replaceAll("\\s+", "");
-            switch (expression) {
-                case ":h":
-                case ":help": {
-                    printHelp();
-                    break;
+            try {
+                System.out.print(">>");
+                expression = scanner.nextLine().replaceAll("\\s+", "");
+                switch (expression) {
+                    case ":h":
+                    case ":help": {
+                        printHelp();
+                        break;
+                    }
+                    case ":!":
+                    case ":e":
+                    case ":exit":
+                    case ":quit": {
+                        return;
+                    }
+                    default: {
+                        final Calculator calculator = context.getBean("calculator", Calculator.class);
+                        calculator.setExpression(expression);
+                        calculator.calculate();
+                        System.out.println(calculator);
+                    }
                 }
-                case ":!":
-                case ":e":
-                case ":exit":
-                case ":quit": {
-                    return;
-                }
-                default: {
-                    calculate(expression);
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } while (true);
 
-    }
-
-    private void calculate(String expression) {
-        if (valid(expression)) {
-            operatorParser.parse();
-        }
-    }
-
-    private boolean valid(String expression) {
-        return validator.valid(expression);
     }
 
     private void printHelp() {
