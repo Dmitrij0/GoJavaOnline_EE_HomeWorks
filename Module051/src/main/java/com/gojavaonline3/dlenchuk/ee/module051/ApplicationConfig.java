@@ -16,7 +16,7 @@ public class ApplicationConfig {
         calculator1 calculator = new calculator1();
         calculator.setOperatorFactory(operatorFactory());
         calculator.setValidator(validator());
-        calculator.setParser(parser());
+        calculator.setOperatorParser(parser());
         return new calculator1();
     }
 
@@ -28,7 +28,7 @@ public class ApplicationConfig {
 
     @Bean
     @Scope("prototype")
-    public Parser parser() {
+    public OperatorParser parser() {
         return null;
     }
 */

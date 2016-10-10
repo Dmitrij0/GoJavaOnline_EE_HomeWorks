@@ -1,7 +1,7 @@
 package com.gojavaonline3.dlenchuk.ee.module051;
 
 import com.gojavaonline3.dlenchuk.ee.module051.calculator.Calculator;
-import com.gojavaonline3.dlenchuk.ee.module051.calculator.Parser;
+import com.gojavaonline3.dlenchuk.ee.module051.calculator.OperatorParser;
 import com.gojavaonline3.dlenchuk.ee.module051.calculator.Validator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Evaluator {
 
     private Validator validator;
-    private Parser parser;
+    private OperatorParser operatorParser;
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -24,8 +24,8 @@ public class Evaluator {
         this.validator = validator;
     }
 
-    public void setParser(Parser parser) {
-        this.parser = parser;
+    public void setOperatorParser(OperatorParser operatorParser) {
+        this.operatorParser = operatorParser;
     }
 
     private void execute() {
@@ -56,7 +56,7 @@ public class Evaluator {
 
     private void calculate(String expression) {
         if (valid(expression)) {
-            parser.parse();
+            operatorParser.parse();
         }
     }
 
