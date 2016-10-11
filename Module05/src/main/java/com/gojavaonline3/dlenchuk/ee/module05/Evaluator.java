@@ -1,8 +1,8 @@
-package com.gojavaonline3.dlenchuk.ee.module051;
+package com.gojavaonline3.dlenchuk.ee.module05;
 
-import com.gojavaonline3.dlenchuk.ee.module051.calculator.Calculator;
+import com.gojavaonline3.dlenchuk.ee.module05.calculator.Calculable;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Scanner;
 
@@ -11,8 +11,7 @@ public class Evaluator {
     private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-//        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
-        ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml", "aop-context.xml");
         new Evaluator().execute(context);
     }
 
@@ -36,10 +35,8 @@ public class Evaluator {
                         return;
                     }
                     default: {
-                        final Calculator calculator = context.getBean("calculator", Calculator.class);
-                        calculator.setExpression(expression);
-                        calculator.calculate();
-                        System.out.println(calculator);
+                        final Calculable calculator = (Calculable) context.getBean("calculator");
+                        System.out.println(calculator.calculate(expression));
                     }
                 }
             } catch (Exception e) {

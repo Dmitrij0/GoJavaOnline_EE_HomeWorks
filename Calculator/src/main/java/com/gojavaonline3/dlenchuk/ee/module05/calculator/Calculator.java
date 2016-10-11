@@ -1,4 +1,4 @@
-package com.gojavaonline3.dlenchuk.ee.module051.calculator;
+package com.gojavaonline3.dlenchuk.ee.module05.calculator;
 
 public class Calculator implements Calculable {
 
@@ -31,7 +31,8 @@ public class Calculator implements Calculable {
     }
 
     @Override
-    public String calculate() {
+    public String calculate(String expression) {
+        this.expression = expression;
         if (calculated) {
             throw new IllegalStateException("An expression is already calculated");
         }
