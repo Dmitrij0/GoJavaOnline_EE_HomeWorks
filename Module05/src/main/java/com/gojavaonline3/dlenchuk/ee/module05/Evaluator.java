@@ -10,12 +10,18 @@ public class Evaluator {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml", "aop-context.xml");
-        new Evaluator().execute(context);
+    private CalculatorFactory calculatorFactory;
+
+    public void setCalculatorFactory(CalculatorFactory calculatorFactory) {
+        this.calculatorFactory = calculatorFactory;
     }
 
-    private void execute(ApplicationContext context) {
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml", "aop-context.xml");
+        ((Evaluator) context.getBean("evaluator")).execute();
+    }
+
+    private void execute() {
         String expression;
         printHelp();
         do {
@@ -35,7 +41,7 @@ public class Evaluator {
                         return;
                     }
                     default: {
-                        final Calculable calculator = (Calculable) context.getBean("calculator");
+                        Calculable calculator = calculatorFactory.getCalculator();
                         System.out.println(calculator.calculate(expression));
                     }
                 }
