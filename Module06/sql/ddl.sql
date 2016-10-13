@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     13.10.2016 1:57:15                           */
+/* Created on:     13.10.2016 14:57:23                          */
 /*==============================================================*/
 
 
@@ -10,6 +10,7 @@ create or replace package PDTypes
 as
     TYPE ref_cursor IS REF CURSOR;
 end;
+/
 
 -- Integrity package declaration
 create or replace package IntegrityPackage AS
@@ -59,6 +60,42 @@ create or replace package body IntegrityPackage AS
 /
 
 
+drop trigger "CompoundDeleteTrigger_dish"
+/
+
+drop trigger "CompoundInsertTrigger_dish"
+/
+
+drop trigger "CompoundUpdateTrigger_dish"
+/
+
+drop trigger "tib_dish"
+/
+
+drop trigger "CompoundDeleteTrigger_dish_of_"
+/
+
+drop trigger "CompoundInsertTrigger_dish_of_"
+/
+
+drop trigger "CompoundUpdateTrigger_dish_of_"
+/
+
+drop trigger "tib_dish_of_orders"
+/
+
+drop trigger "CompoundDeleteTrigger_employee"
+/
+
+drop trigger "CompoundInsertTrigger_employee"
+/
+
+drop trigger "CompoundUpdateTrigger_employee"
+/
+
+drop trigger "tib_employee"
+/
+
 drop trigger "CompoundDeleteTrigger_ingredie"
 /
 
@@ -71,7 +108,52 @@ drop trigger "CompoundUpdateTrigger_ingredie"
 drop trigger "tib_ingredient"
 /
 
-drop index "JoinIndex_1"
+drop trigger "CompoundDeleteTrigger_menu"
+/
+
+drop trigger "CompoundInsertTrigger_menu"
+/
+
+drop trigger "CompoundUpdateTrigger_menu"
+/
+
+drop trigger "tib_menu"
+/
+
+drop trigger "CompoundDeleteTrigger_orders"
+/
+
+drop trigger "CompoundInsertTrigger_orders"
+/
+
+drop trigger "CompoundUpdateTrigger_orders"
+/
+
+drop trigger "tib_orders"
+/
+
+drop trigger "CompoundDeleteTrigger_position"
+/
+
+drop trigger "CompoundInsertTrigger_position"
+/
+
+drop trigger "CompoundUpdateTrigger_position"
+/
+
+drop trigger "tib_positions"
+/
+
+drop trigger "CompoundDeleteTrigger_prepared"
+/
+
+drop trigger "CompoundInsertTrigger_prepared"
+/
+
+drop trigger "CompoundUpdateTrigger_prepared"
+/
+
+drop trigger "tib_prepared_dishes"
 /
 
 alter table COOK
@@ -204,10 +286,52 @@ drop table PREPARED_DISHES cascade constraints
 drop table STOCK cascade constraints
 /
 
+drop sequence SEQ_DISH
+/
+
+drop sequence SEQ_DISH_OF_ORDERS
+/
+
+drop sequence SEQ_EMPLOYEE
+/
+
 drop sequence SEQ_INGREDIENT
 /
 
+drop sequence SEQ_MENU
+/
+
+drop sequence SEQ_ORDERS
+/
+
+drop sequence SEQ_POSITIONS
+/
+
+drop sequence SEQ_PREPARED_DISHES
+/
+
+create sequence SEQ_DISH
+/
+
+create sequence SEQ_DISH_OF_ORDERS
+/
+
+create sequence SEQ_EMPLOYEE
+/
+
 create sequence SEQ_INGREDIENT
+/
+
+create sequence SEQ_MENU
+/
+
+create sequence SEQ_ORDERS
+/
+
+create sequence SEQ_POSITIONS
+/
+
+create sequence SEQ_PREPARED_DISHES
 /
 
 /*==============================================================*/
@@ -538,16 +662,326 @@ alter table STOCK
       references INGREDIENT (ING_ID)
 /
 
-create bitmap index "JoinIndex_1" on INGREDIENT (  )
-from 
-where
+
+create or replace trigger "CompoundDeleteTrigger_dish"
+for delete on DISH compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundInsertTrigger_dish"
+for insert on DISH compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundUpdateTrigger_dish"
+for update on DISH compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create trigger "tib_dish" before insert
+on DISH for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+begin
+    --  Column "DSH_ID" uses sequence SEQ_DISH
+    select SEQ_DISH.NEXTVAL INTO :new.DSH_ID from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create or replace trigger "CompoundDeleteTrigger_dish_of_"
+for delete on DISH_OF_ORDERS compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundInsertTrigger_dish_of_"
+for insert on DISH_OF_ORDERS compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundUpdateTrigger_dish_of_"
+for update on DISH_OF_ORDERS compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create trigger "tib_dish_of_orders" before insert
+on DISH_OF_ORDERS for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+begin
+    --  Column "DOD_ID" uses sequence SEQ_DISH_OF_ORDERS
+    select SEQ_DISH_OF_ORDERS.NEXTVAL INTO :new.DOD_ID from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create or replace trigger "CompoundDeleteTrigger_employee"
+for delete on EMPLOYEE compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundInsertTrigger_employee"
+for insert on EMPLOYEE compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundUpdateTrigger_employee"
+for update on EMPLOYEE compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create trigger "tib_employee" before insert
+on EMPLOYEE for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+begin
+    --  Column "EMP_ID" uses sequence SEQ_EMPLOYEE
+    select SEQ_EMPLOYEE.NEXTVAL INTO :new.EMP_ID from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
 /
 
 
 create or replace trigger "CompoundDeleteTrigger_ingredie"
 for delete on INGREDIENT compound trigger
-// Declaration
-// Body
+--  Declaration
+--  Body
   before statement is
   begin
      NULL;
@@ -568,14 +1002,14 @@ for delete on INGREDIENT compound trigger
      NULL;
   end after statement;
 
-END
+END;
 /
 
 
 create or replace trigger "CompoundInsertTrigger_ingredie"
 for insert on INGREDIENT compound trigger
-// Declaration
-// Body
+--  Declaration
+--  Body
   before statement is
   begin
      NULL;
@@ -596,14 +1030,14 @@ for insert on INGREDIENT compound trigger
      NULL;
   end after statement;
 
-END
+END;
 /
 
 
 create or replace trigger "CompoundUpdateTrigger_ingredie"
 for update on INGREDIENT compound trigger
-// Declaration
-// Body
+--  Declaration
+--  Body
   before statement is
   begin
      NULL;
@@ -624,7 +1058,7 @@ for update on INGREDIENT compound trigger
      NULL;
   end after statement;
 
-END
+END;
 /
 
 
@@ -640,6 +1074,426 @@ declare
 begin
     --  Column "ING_ID" uses sequence SEQ_INGREDIENT
     select SEQ_INGREDIENT.NEXTVAL INTO :new.ING_ID from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create or replace trigger "CompoundDeleteTrigger_menu"
+for delete on MENU compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundInsertTrigger_menu"
+for insert on MENU compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundUpdateTrigger_menu"
+for update on MENU compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create trigger "tib_menu" before insert
+on MENU for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+begin
+    --  Column "MNU_ID" uses sequence SEQ_MENU
+    select SEQ_MENU.NEXTVAL INTO :new.MNU_ID from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create or replace trigger "CompoundDeleteTrigger_orders"
+for delete on ORDERS compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundInsertTrigger_orders"
+for insert on ORDERS compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundUpdateTrigger_orders"
+for update on ORDERS compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create trigger "tib_orders" before insert
+on ORDERS for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+begin
+    --  Column "ORD_ID" uses sequence SEQ_ORDERS
+    select SEQ_ORDERS.NEXTVAL INTO :new.ORD_ID from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create or replace trigger "CompoundDeleteTrigger_position"
+for delete on POSITIONS compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundInsertTrigger_position"
+for insert on POSITIONS compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundUpdateTrigger_position"
+for update on POSITIONS compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create trigger "tib_positions" before insert
+on POSITIONS for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+begin
+    --  Column "PST_ID" uses sequence SEQ_POSITIONS
+    select SEQ_POSITIONS.NEXTVAL INTO :new.PST_ID from dual;
+
+--  Errors handling
+exception
+    when integrity_error then
+       raise_application_error(errno, errmsg);
+end;
+/
+
+
+create or replace trigger "CompoundDeleteTrigger_prepared"
+for delete on PREPARED_DISHES compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundInsertTrigger_prepared"
+for insert on PREPARED_DISHES compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create or replace trigger "CompoundUpdateTrigger_prepared"
+for update on PREPARED_DISHES compound trigger
+--  Declaration
+--  Body
+  before statement is
+  begin
+     NULL;
+  end before statement;
+
+  before each row is
+  begin
+     NULL;
+  end before each row;
+
+  after each row is
+  begin
+     NULL;
+  end after each row;
+
+  after statement is
+  begin
+     NULL;
+  end after statement;
+
+END;
+/
+
+
+create trigger "tib_prepared_dishes" before insert
+on PREPARED_DISHES for each row
+declare
+    integrity_error  exception;
+    errno            integer;
+    errmsg           char(200);
+    dummy            integer;
+    found            boolean;
+
+begin
+    --  Column "PRD_ID" uses sequence SEQ_PREPARED_DISHES
+    select SEQ_PREPARED_DISHES.NEXTVAL INTO :new.PRD_ID from dual;
 
 --  Errors handling
 exception
