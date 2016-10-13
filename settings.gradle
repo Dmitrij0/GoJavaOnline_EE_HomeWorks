@@ -8,4 +8,5 @@ include 'Module032'
 include 'Module08'
 include 'Calculator'
 include 'Module05'
+include 'Module06'
 
